@@ -1,5 +1,5 @@
 
-const resolve = requre('path').resolve;
+const resolve = require('path').resolve;
 
 module.exports = {
 
@@ -8,9 +8,14 @@ module.exports = {
         path: resolve(__dirname, './dist'),
         filename: 'timeseries.bundle.js'
     },
+    resolve: {
+        extensions: ['', '.js', '.css', 'styl']
+    },
     module: {
         loaders: [
-             {
+            { test: /\.css$/, loader: "style!css" },
+            { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' },
+            {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel', 
